@@ -6,8 +6,12 @@ enum Activity: ActivityType {
   case isUsernameAvailable
   case signupUsingAction
   case signup
+  
+  var isNetworkActivity: Bool {
+    return true
+  }
 }
 
 extension The {
-  static let activityCenter = ActivityTracker<Activity>()
+  static let activityCenter = ActivityCenter<Activity>()
 }

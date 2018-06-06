@@ -9,9 +9,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   func setupNetworkAcitivtyTracking() {
     _ = The.activityCenter
-      .combinedExecuting(of: [.signup, .signupUsingAction, .isUsernameAvailable])
-      .takeUntil(rx.deallocated)
-      .asDriver(onErrorJustReturn: false)
+      .networkActivity
       .drive(The.app.rx.isNetworkActivityIndicatorVisible)
   }
 

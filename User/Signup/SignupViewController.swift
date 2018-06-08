@@ -5,7 +5,7 @@ import RxCocoa
 import MudoxKit
 
 import JacKit
-fileprivate let jack = Jack.with(levelOfThisFile: .verbose)
+fileprivate let jack = Jack.usingLocalFileScope().setLevel(.verbose)
 
 extension Reactive where Base: UILabel {
 
@@ -33,7 +33,9 @@ class SignupViewController: UIViewController {
   @IBOutlet weak var passwordRepeatedLabel: UILabel!
 
   @IBOutlet weak var signupButton: UIButton!
+
   @IBOutlet weak var registerButton: UIButton!
+  @IBOutlet weak var registeringIndicator: UIActivityIndicatorView!
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -48,20 +50,33 @@ class SignupViewController: UIViewController {
     passwordLabel.text = ""
     passwordRepeatedLabel.text = ""
 
-    signupButton.isEnabled = false
-
-    with(registerButton) { b in
+    with(signupButton) { b in
+      b.isEnabled = false
+      
       b.setTitleColor(.white, for: .normal)
-      b.setBackgroundImage(UIImage.mdx.color(#colorLiteral(red: 0.1960784346, green: 0.3411764801, blue: 0.1019607857, alpha: 1)), for: .normal)
-
+      b.setBackgroundImage(UIImage.mdx.color(#colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)), for: .normal)
+      b.setBackgroundImage(UIImage.mdx.color(#colorLiteral(red: 0.1019607857, green: 0.2784313858, blue: 0.400000006, alpha: 1)), for: .selected)
+      
       b.setTitleColor(.white, for: .disabled)
       b.setBackgroundImage(UIImage.mdx.color(#colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)), for: .disabled)
-
+      
       b.layer.cornerRadius = 3
       b.layer.masksToBounds = true
     }
 
-
+    with(registerButton) { b in
+      b.isEnabled = false
+      
+      b.setTitleColor(.white, for: .normal)
+      b.setBackgroundImage(UIImage.mdx.color(#colorLiteral(red: 0.2745098174, green: 0.4862745106, blue: 0.1411764771, alpha: 1)), for: .normal)
+      b.setBackgroundImage(UIImage.mdx.color(#colorLiteral(red: 0.1294117719, green: 0.2156862766, blue: 0.06666667014, alpha: 1)), for: .highlighted)
+      
+      b.setTitleColor(.white, for: .disabled)
+      b.setBackgroundImage(UIImage.mdx.color(#colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)), for: .disabled)
+      
+      b.layer.cornerRadius = 3
+      b.layer.masksToBounds = true
+    }
 
   }
 
@@ -112,7 +127,11 @@ class SignupViewController: UIViewController {
       .subscribe(onNext: { result in
         jack.info("Register: \(result)")
       })
-    .disposed(by: disposeBag)
+      .disposed(by: disposeBag)
+
+    viewModel.signupAction.executing
+      .bind(to: registeringIndicator.rx.isAnimating)
+      .disposed(by: disposeBag)
 
     viewModel.progressHUD
       .drive(view.mbp.hud)

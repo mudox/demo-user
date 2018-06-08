@@ -1,17 +1,26 @@
-import Foundation
-
 import MudoxKit
 
-enum Activity: ActivityType {
-  case isUsernameAvailable
-  case signupUsingAction
-  case signup
-  
-  var isNetworkActivity: Bool {
-    return true
-  }
-}
+extension Activity {
 
-extension The {
-  static let activityCenter = ActivityCenter<Activity>()
+  public static let isUserNameAvailable = Activity(
+    identifier: "isUserNameAvailable",
+    isNetworkActivity: true,
+    maxConcurrency: 1,
+    isLoggingEnbaled: false
+  )
+
+  public static let signupUsingAction = Activity(
+    identifier: "signupUsingAction",
+    isNetworkActivity: true,
+    maxConcurrency: 1,
+    isLoggingEnbaled: false
+  )
+
+  public static let signup = Activity(
+    identifier: "signup",
+    isNetworkActivity: true,
+    maxConcurrency: 1,
+    isLoggingEnbaled: false
+  )
+
 }

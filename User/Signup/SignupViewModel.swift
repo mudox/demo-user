@@ -6,7 +6,7 @@ import Action
 import MudoxKit
 
 import JacKit
-fileprivate let jack = Jack.with(levelOfThisFile: .verbose)
+fileprivate let jack = Jack.usingLocalFileScope().setLevel(.verbose)
 
 struct SignupViewModel {
 
@@ -68,7 +68,7 @@ struct SignupViewModel {
       .flatMapFirst { username, password in
         return dependency.networkService
           .signup(username: username, password: password)
-          .track(Activity.signup, by: The.activityCenter)
+          .trackActivity(.signup)
           .asDriver(onErrorJustReturn: false)
     }
 
@@ -76,7 +76,7 @@ struct SignupViewModel {
       username, password in
       return dependency.networkService
         .signup(username: username, password: password)
-        .track(Activity.signupUsingAction, by: The.activityCenter)
+        .trackActivity(.signupUsingAction)
     }
 
     progressHUD = The.activityCenter

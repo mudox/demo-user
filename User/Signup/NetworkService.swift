@@ -7,7 +7,7 @@ import RxAlamofire
 import MudoxKit
 
 import JacKit
-fileprivate let jack = Jack.with(levelOfThisFile: .verbose)
+fileprivate let jack = Jack.usingLocalFileScope().setLevel(.verbose)
 
 struct NetworkService {
 
@@ -18,7 +18,7 @@ struct NetworkService {
         return response.statusCode == 404
       }
       .catchErrorJustReturn(false)
-      .track(Activity.isUsernameAvailable, by: The.activityCenter)
+      .trackActivity(.isUserNameAvailable)
   }
 
   // Fake

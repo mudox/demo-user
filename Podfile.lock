@@ -19,6 +19,9 @@ PODS:
     - RxSwift (~> 4.0)
   - MudoxKit (0.1.0):
     - MudoxKit/Core (= 0.1.0)
+  - MudoxKit/ActivityCenter (0.1.0):
+    - RxCocoa
+    - RxSwift
   - MudoxKit/Core (0.1.0):
     - JacKit
     - RxCocoa
@@ -52,6 +55,7 @@ DEPENDENCIES:
   - JacKit (from `/Users/mudox/Develop/Apple/Frameworks/JacKit/`)
   - Moya/RxSwift
   - MudoxKit (from `/Users/mudox/Develop/Apple/Frameworks/MudoxKit/`)
+  - MudoxKit/ActivityCenter (from `/Users/mudox/Develop/Apple/Frameworks/MudoxKit/`)
   - MudoxKit/Eureka (from `/Users/mudox/Develop/Apple/Frameworks/MudoxKit/`)
   - MudoxKit/MBProgressHUD (from `/Users/mudox/Develop/Apple/Frameworks/MudoxKit/`)
   - RxAlamofire
@@ -90,7 +94,7 @@ SPEC CHECKSUMS:
   JacKit: b0038a8a0acaaaa1117e14a0276cabcf6b4c3d10
   MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
   Moya: a725035953bc1c0eb1be505ab903984501d82440
-  MudoxKit: e6a849edd044c4708a6bb2dab3e2ff52d0a81b14
+  MudoxKit: db25b2ca044fe4d56628ebead8104f74a2bc9561
   Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
   RxAlamofire: 87a9c588541210cc3e4a1f843ccc3ecf3eb98b31
   RxCocoa: d88ba0f1f6abf040011a9eb4b539324fc426843a
@@ -98,6 +102,6 @@ SPEC CHECKSUMS:
   RxSwift: e49536837d9901277638493ea537394d4b55f570
   RxSwiftExt: 64b7140124629a6a084159735f3714f0fb1c61d6
 
-PODFILE CHECKSUM: ca35da5d2bfcf26616a349cb322fbc143eb5c551
+PODFILE CHECKSUM: 9258efc09513f3315fe2b72ea01d9847bc3e7d0e
 
 COCOAPODS: 1.5.2

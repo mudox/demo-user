@@ -8,11 +8,14 @@ target 'User' do
   pod 'JacKit',                  :path => basePath + 'JacKit/'
   pod 'MudoxKit',                :path => mudoxKitPath
   pod 'MudoxKit/MBProgressHUD',  :path => mudoxKitPath
+  pod 'MudoxKit/ActivityCenter', :path => mudoxKitPath
   pod 'MudoxKit/Eureka',         :path => mudoxKitPath
 
   pod 'Eureka'
+
   pod 'RxSwift'
   pod 'RxCocoa'
+
   pod 'Action'
 
   pod 'Moya/RxSwift'

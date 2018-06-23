@@ -37,6 +37,18 @@
       }
     },
     {
+      "name": "ActivityCenter",
+      "source_files": "MudoxKit/ActivityCenter/**/*.{swift,h,m}",
+      "dependencies": {
+        "RxSwift": [
+
+        ],
+        "RxCocoa": [
+
+        ]
+      }
+    },
+    {
       "name": "MBProgressHUD",
       "source_files": "MudoxKit/MBProgressHUD/**/*.swift",
       "dependencies": {

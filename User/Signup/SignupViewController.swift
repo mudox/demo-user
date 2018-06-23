@@ -1,4 +1,5 @@
 import UIKit
+
 import RxSwift
 import RxCocoa
 
@@ -21,6 +22,7 @@ extension Reactive where Base: UILabel {
 class SignupViewController: UIViewController {
 
   var disposeBag = DisposeBag()
+
   var viewModel: SignupViewModel!
 
   @IBOutlet weak var usernameField: UITextField!
@@ -42,6 +44,23 @@ class SignupViewController: UIViewController {
 
     setupSubviews()
     setupViewModel()
+
+    usernameField.rx.controlEvent(.editingDidBegin).asDriver()
+      .drive(onNext: {
+        jack.debug("did begin")
+      })
+      .disposed(by: disposeBag)
+    usernameField.rx.controlEvent(.editingDidEnd).asDriver()
+      .drive(onNext: {
+        jack.debug("did end")
+      })
+      .disposed(by: disposeBag)
+    usernameField.rx.controlEvent(.editingDidEndOnExit).asDriver()
+      .drive(onNext: {
+        jack.debug("did end on exit")
+      })
+      .disposed(by: disposeBag)
+
   }
 
   func setupSubviews() {
@@ -52,28 +71,28 @@ class SignupViewController: UIViewController {
 
     with(signupButton) { b in
       b.isEnabled = false
-      
+
       b.setTitleColor(.white, for: .normal)
       b.setBackgroundImage(UIImage.mdx.color(#colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)), for: .normal)
       b.setBackgroundImage(UIImage.mdx.color(#colorLiteral(red: 0.1019607857, green: 0.2784313858, blue: 0.400000006, alpha: 1)), for: .selected)
-      
+
       b.setTitleColor(.white, for: .disabled)
       b.setBackgroundImage(UIImage.mdx.color(#colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)), for: .disabled)
-      
+
       b.layer.cornerRadius = 3
       b.layer.masksToBounds = true
     }
 
     with(registerButton) { b in
       b.isEnabled = false
-      
+
       b.setTitleColor(.white, for: .normal)
       b.setBackgroundImage(UIImage.mdx.color(#colorLiteral(red: 0.2745098174, green: 0.4862745106, blue: 0.1411764771, alpha: 1)), for: .normal)
       b.setBackgroundImage(UIImage.mdx.color(#colorLiteral(red: 0.1294117719, green: 0.2156862766, blue: 0.06666667014, alpha: 1)), for: .highlighted)
-      
+
       b.setTitleColor(.white, for: .disabled)
       b.setBackgroundImage(UIImage.mdx.color(#colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)), for: .disabled)
-      
+
       b.layer.cornerRadius = 3
       b.layer.masksToBounds = true
     }

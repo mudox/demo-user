@@ -8,13 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		AE419DBADBA8685F4554D469 /* Pods_User.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD1FA87D9BC14A50ED01B5A4 /* Pods_User.framework */; };
+		F484753320DE56CE0081D7DF /* ValidationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F484753220DE56CD0081D7DF /* ValidationState.swift */; };
 		F49176B820C4ED71001FD7B6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49176B720C4ED71001FD7B6 /* AppDelegate.swift */; };
 		F49176BA20C4ED71001FD7B6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49176B920C4ED71001FD7B6 /* ViewController.swift */; };
 		F49176BD20C4ED71001FD7B6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F49176BB20C4ED71001FD7B6 /* Main.storyboard */; };
 		F49176BF20C4ED72001FD7B6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F49176BE20C4ED72001FD7B6 /* Assets.xcassets */; };
 		F49176C220C4ED72001FD7B6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F49176C020C4ED72001FD7B6 /* LaunchScreen.storyboard */; };
 		F49176CB20C4F255001FD7B6 /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49176CA20C4F255001FD7B6 /* SignupViewModel.swift */; };
-		F49176CD20C4F2C0001FD7B6 /* ValidationResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49176CC20C4F2C0001FD7B6 /* ValidationResult.swift */; };
 		F49176CF20C51399001FD7B6 /* SignupService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49176CE20C51399001FD7B6 /* SignupService.swift */; };
 		F497867220C536AD0017CC47 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F497867020C536090017CC47 /* SignupViewController.swift */; };
 		F497867420C53B3C0017CC47 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F497867320C53B3C0017CC47 /* NetworkService.swift */; };
@@ -24,6 +24,7 @@
 /* Begin PBXFileReference section */
 		BD1FA87D9BC14A50ED01B5A4 /* Pods_User.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_User.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEBE4ACCC8B2322BEA32354D /* Pods-User.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-User.debug.xcconfig"; path = "Pods/Target Support Files/Pods-User/Pods-User.debug.xcconfig"; sourceTree = "<group>"; };
+		F484753220DE56CD0081D7DF /* ValidationState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidationState.swift; sourceTree = "<group>"; };
 		F49176B420C4ED71001FD7B6 /* User.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = User.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F49176B720C4ED71001FD7B6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F49176B920C4ED71001FD7B6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -32,7 +33,6 @@
 		F49176C120C4ED72001FD7B6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F49176C320C4ED72001FD7B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F49176CA20C4F255001FD7B6 /* SignupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewModel.swift; sourceTree = "<group>"; };
-		F49176CC20C4F2C0001FD7B6 /* ValidationResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationResult.swift; sourceTree = "<group>"; };
 		F49176CE20C51399001FD7B6 /* SignupService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupService.swift; sourceTree = "<group>"; };
 		F497867020C536090017CC47 /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		F497867320C53B3C0017CC47 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
@@ -105,7 +105,7 @@
 		F49176C920C4F240001FD7B6 /* Signup */ = {
 			isa = PBXGroup;
 			children = (
-				F49176CC20C4F2C0001FD7B6 /* ValidationResult.swift */,
+				F484753220DE56CD0081D7DF /* ValidationState.swift */,
 				F497867020C536090017CC47 /* SignupViewController.swift */,
 				F49176CE20C51399001FD7B6 /* SignupService.swift */,
 				F49176CA20C4F255001FD7B6 /* SignupViewModel.swift */,
@@ -258,8 +258,8 @@
 				F49176CB20C4F255001FD7B6 /* SignupViewModel.swift in Sources */,
 				F49176BA20C4ED71001FD7B6 /* ViewController.swift in Sources */,
 				F49176B820C4ED71001FD7B6 /* AppDelegate.swift in Sources */,
+				F484753320DE56CE0081D7DF /* ValidationState.swift in Sources */,
 				F49176CF20C51399001FD7B6 /* SignupService.swift in Sources */,
-				F49176CD20C4F2C0001FD7B6 /* ValidationResult.swift in Sources */,
 				F497867620C58DFA0017CC47 /* Activity.swift in Sources */,
 				F497867420C53B3C0017CC47 /* NetworkService.swift in Sources */,
 			);
@@ -409,7 +409,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = YSQ5ZCLFSD;
 				INFOPLIST_FILE = User/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.github.mudox.MudoxKit.User;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -425,7 +428,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = YSQ5ZCLFSD;
 				INFOPLIST_FILE = User/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.github.mudox.MudoxKit.User;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;

@@ -10,9 +10,9 @@ fileprivate let jack = Jack.usingLocalFileScope().setLevel(.verbose)
 
 struct SignupViewModel {
 
-  let usernameValidation: Driver<ValidationResult>
-  let passwordValidation: Driver<ValidationResult>
-  let passwordRepeatedValidation: Driver<ValidationResult>
+  let usernameValidation: Driver<ValidationState >
+  let passwordValidation: Driver<ValidationState >
+  let passwordRepeatedValidation: Driver<ValidationState >
 
   let isSignupEnabled: Driver<Bool>
   let signupResult: Driver<Bool>
@@ -36,23 +36,19 @@ struct SignupViewModel {
     usernameValidation = input.username
       .debounce(0.5)
       .distinctUntilChanged()
-      .flatMapLatest {
+      .flatMapLatest({
         dependency.signupService
           .validateUsername($0)
-          .asDriver(onErrorJustReturn: .failure("validation failed"))
-          .startWith(.validating)
-    }
+          .asDriver(onErrorJustReturn: .error("validation failed"))
+      })
 
     passwordValidation = input.password
-      .map {
-        dependency.signupService
-          .validatePassword($0)
-    }
+      .map(dependency.signupService.validatePassword)
 
     passwordRepeatedValidation = Driver.combineLatest(
       input.password,
       input.passwordRepeated,
-      resultSelector: dependency.signupService.validatePasswordRepeated
+      resultSelector: dependency.signupService.validateRepeatedPassword
     )
 
     isSignupEnabled = Driver.combineLatest(

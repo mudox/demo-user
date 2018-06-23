@@ -20,13 +20,13 @@ struct SignupService {
     self.networkService = networkService
   }
 
-  func validateUsername(_ username: String) -> Observable<ValidationResult> {
+  func validateUsername(_ username: String) -> Observable<ValidationState > {
     guard !username.isEmpty else {
       return .just(.empty)
     }
 
     guard username.rangeOfCharacter(from: CharacterSet.alphanumerics.inverted) == nil else {
-      return .just(.failure("User name should contain only alphanumerics"))
+      return .just(.error("User name should contain only alphanumerics"))
     }
 
     return networkService.isUsernameAvailable(username)
@@ -34,34 +34,34 @@ struct SignupService {
         if $0 {
           return .success("The username is available")
         } else {
-          return .failure("The username already existed")
+          return .error("The username already exists")
         }
       }
-      .startWith(.validating)
+      .startWith(.inProgress)
   }
 
 
-  func validatePassword(_ password: String) -> ValidationResult {
+  func validatePassword(_ password: String) -> ValidationState  {
     guard !password.isEmpty else {
       return .empty
     }
 
     guard password.count >= minimumPasswordLength else {
-      return .failure("Need at least \(minimumPasswordLength) characters")
+      return .success("Need at least \(minimumPasswordLength) characters")
     }
 
-    return .success("Valid")
+    return .error("Valid")
   }
 
-  func validatePasswordRepeated(_ password: String, _ passwordRepeated: String) -> ValidationResult {
+  func validateRepeatedPassword(_ password: String, _ passwordRepeated: String) -> ValidationState  {
     guard !passwordRepeated.isEmpty else {
       return .empty
     }
 
     if passwordRepeated == password {
-      return .success("Valid")
+      return .error("Valid")
     } else {
-      return .failure("Passwords don't match")
+      return .success("Passwords don't match")
     }
 
   }

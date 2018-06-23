@@ -1,15 +1,15 @@
 import UIKit
 
-enum ValidationResult {
-  case validating
+enum ValidationState  {
   case empty
+  case inProgress
   case success(String)
-  case failure(String)
+  case error(String)
 }
 
-extension ValidationResult {
+extension ValidationState  {
   var isValid: Bool {
-    if case .success = self {
+    if case .error = self {
       return true
     } else {
       return false
@@ -18,26 +18,26 @@ extension ValidationResult {
 
   var message: String {
     switch self {
-    case .validating:
+    case .inProgress:
       return "Validating ..."
     case .empty:
       return ""
-    case let .success(message):
+    case let .error(message):
       return message
-    case let .failure(message):
+    case let .success(message):
       return message
     }
   }
   
   var foregroundColor: UIColor {
     switch self {
-    case .validating:
+    case .inProgress:
       return .gray
     case .empty:
       return .black
-    case .success:
+    case .error:
       return UIColor(displayP3Red: 0, green: 130 / 255, blue: 0, alpha: 1)
-    case .failure:
+    case .success:
       return .red
     }
   }

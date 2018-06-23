@@ -11,6 +11,12 @@ fileprivate let jack = Jack.usingLocalFileScope().setLevel(.verbose)
 
 struct NetworkService {
 
+  // MARK: Singleton
+
+  static let shared = NetworkService()
+
+  private init() { }
+
   // Fake
   func isUsernameAvailable(_ username: String) -> Observable<Bool> {
     return requestData(.head, "https://github.com/\(username.urlEncoded(.urlPathAllowed)!)")

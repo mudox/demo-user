@@ -10,7 +10,7 @@ fileprivate let jack = Jack.usingLocalFileScope().setLevel(.verbose)
 
 extension Reactive where Base: UILabel {
 
-  var validationResult: Binder<ValidationResult> {
+  var validationResult: Binder<ValidationState > {
     return Binder(base) { label, result in
       label.textColor = result.foregroundColor
       label.text = result.message
@@ -42,7 +42,7 @@ class SignupViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    setupSubviews()
+    setupView()
     setupViewModel()
 
     usernameField.rx.controlEvent(.editingDidBegin).asDriver()
@@ -63,7 +63,7 @@ class SignupViewController: UIViewController {
 
   }
 
-  func setupSubviews() {
+  func setupView() {
 
     usernameLabel.text = ""
     passwordLabel.text = ""
@@ -105,7 +105,6 @@ class SignupViewController: UIViewController {
 
   func setupViewModel() {
 
-    let networkService = NetworkService()
     viewModel = SignupViewModel(
       input: (
         username: usernameField.rx.text.orEmpty.asDriver(),
@@ -114,8 +113,8 @@ class SignupViewController: UIViewController {
         signupTap: signupButton.rx.tap.asDriver()
       ),
       dependency: (
-        networkService: networkService,
-        signupService: SignupService(networkService: networkService)
+        networkService: NetworkService.shared,
+        signupService: SignupService(networkService: NetworkService.shared)
       )
     )
 
